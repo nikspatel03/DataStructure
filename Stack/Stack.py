@@ -1,6 +1,10 @@
 """
 Stack implementation in Python
 """
+import os, sys
+sys.path.insert(0,"/Users/nikul.g.patel/github/DataStructure")
+
+from test import *
 
 class Stack:
     def __init__(self):
@@ -45,7 +49,8 @@ def revstring(mystr):
         revstr = revstr + s.pop()
     return revstr
 
-print(revstring("hello"))
+
+testEqual(revstring("hello"),'olleh')
 
 # Simple balance paranthses program
 def parChecker(symbolStr):
@@ -68,8 +73,9 @@ def parChecker(symbolStr):
     else:
         return False
 
-print(parChecker('((()))'))
-print(parChecker('(()'))
+
+testEqual(parChecker('(()'),False)
+testEqual(parChecker('((()))'),True)
 
 #General case of parantheses check
 
@@ -100,5 +106,47 @@ def matches(top, ch):
     closing = ")}]"
     return opening.index(top) == closing.index(ch)
 
-print(generalParChecker('{{([][])}()}'))
-print(generalParChecker('[{()]'))
+testEqual(generalParChecker('{{([][])}()}'),True)
+testEqual(generalParChecker('[{()]'),False)
+
+def divideBy2(decimalNum):
+    remStack = Stack()
+    while decimalNum > 0:
+        rem = decimalNum % 2
+        remStack.push(rem)
+        decimalNum = decimalNum // 2
+
+    binStr = ""
+    while not remStack.isEmpty():
+        binStr = binStr + str(remStack.pop())
+
+    return binStr
+
+
+#print(divideBy2(43))
+
+testEqual(divideBy2(43),"101011")
+testEqual(divideBy2(10),"1010")
+testEqual(divideBy2(233),"11101001")
+
+
+
+def baseConverter(decNumber,base):
+    remStack = Stack()
+    digits = "0123456789ABCDEF"
+
+    while decNumber > 0:
+        rem = decNumber % base
+        remStack.push(rem)
+        decNumber = decNumber // base
+
+    retStr = ""
+    while not remStack.isEmpty():
+        retStr = retStr + digits[remStack.pop()]
+
+    return retStr
+
+
+testEqual(baseConverter(25,2),"11001")
+testEqual(baseConverter(10,2),"1010")
+testEqual(baseConverter(25,16),"19")
