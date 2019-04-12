@@ -5,6 +5,7 @@ import os, sys
 sys.path.insert(0,"/Users/nikul.g.patel/github/DataStructure")
 
 from test import *
+import string
 
 class Stack:
     def __init__(self):
@@ -150,3 +151,66 @@ def baseConverter(decNumber,base):
 testEqual(baseConverter(25,2),"11001")
 testEqual(baseConverter(10,2),"1010")
 testEqual(baseConverter(25,16),"19")
+
+
+def infixToPostfix(infixexpr):
+    prec = {}
+    prec["*"] = 3
+    prec["/"] = 3
+    prec["+"] = 2
+    prec["-"] = 2
+    prec["("] = 1
+
+    opStack = Stack()
+    postfixStr = ""
+
+    for ch in infixexpr:
+        if (ch in string.ascii_letters) or (ch in string.digits):
+            postfixStr = postfixStr + ch
+        elif ch == "(":
+            opStack.push(ch)
+        elif ch == ")":
+            top = opStack.pop()
+            while top != "(":
+                postfixStr = postfixStr + top
+                top = opStack.pop()
+        else:
+            while(not opStack.isEmpty() and prec[opStack.peek()] >= prec[ch]):
+                postfixStr = postfixStr + opStack.pop()
+            opStack.push(ch)
+
+    while (not opStack.isEmpty()):
+        postfixStr = postfixStr + opStack.pop()
+
+    return postfixStr
+
+print(infixToPostfix("A*B+C*D"))
+print(infixToPostfix("(A+B)*C-(D-E)*(F+G)"))
+
+
+def postfixEval(postfixExpr):
+    opStack = Stack()
+
+    for ch in postfixExpr:
+        if ch in string.digits:
+            opStack.push(int(ch))
+        else:
+            op2 = opStack.pop()
+            op1 = opStack.pop()
+            res = doMath(ch, op1, op2)
+            opStack.push(res)
+
+    return opStack.pop()
+
+def doMath(op, op1, op2):
+    if op == "*":
+        return op1 * op2
+    elif op == "/":
+        return op1 / op2
+    elif op == "+":
+        return op1 + op2
+    else:
+        return op1 - op2
+
+
+print(postfixEval("456*+"))
