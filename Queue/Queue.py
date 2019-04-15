@@ -30,3 +30,20 @@ q.enqueue(8.4)
 print(q.dequeue())
 print(q.dequeue())
 print(q.size())
+
+
+
+def hotPotato(namelist, num):
+    q = Queue()
+    for name in namelist:
+        q.enqueue(name)
+    while q.size() > 1:
+        for i in range(0,num):
+            name = q.dequeue()
+            q.enqueue(name)
+        q.dequeue()
+
+    return q.dequeue()
+
+
+print(hotPotato(["Bill","David","Susan","Jane","Kent","Brad"],7))
