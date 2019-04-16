@@ -25,7 +25,7 @@ class Stack:
 
     def size(self):
         return len(self.items)
-
+"""
 s=Stack()
 
 print(s.isEmpty())
@@ -39,7 +39,7 @@ s.push(8.4)
 print(s.pop())
 print(s.pop())
 print(s.size())
-
+"""
 # Reverse String function
 def revstring(mystr):
     s = Stack()
@@ -51,7 +51,7 @@ def revstring(mystr):
     return revstr
 
 
-testEqual(revstring("hello"),'olleh')
+#testEqual(revstring("hello"),'olleh')
 
 # Simple balance paranthses program
 def parChecker(symbolStr):
@@ -74,10 +74,10 @@ def parChecker(symbolStr):
     else:
         return False
 
-
+"""
 testEqual(parChecker('(()'),False)
 testEqual(parChecker('((()))'),True)
-
+"""
 #General case of parantheses check
 
 def generalParChecker(symbolStr):
@@ -106,9 +106,10 @@ def matches(top, ch):
     opening = "({["
     closing = ")}]"
     return opening.index(top) == closing.index(ch)
-
+"""
 testEqual(generalParChecker('{{([][])}()}'),True)
 testEqual(generalParChecker('[{()]'),False)
+"""
 
 def divideBy2(decimalNum):
     remStack = Stack()
@@ -125,11 +126,11 @@ def divideBy2(decimalNum):
 
 
 #print(divideBy2(43))
-
+"""
 testEqual(divideBy2(43),"101011")
 testEqual(divideBy2(10),"1010")
 testEqual(divideBy2(233),"11101001")
-
+"""
 
 
 def baseConverter(decNumber,base):
@@ -147,11 +148,11 @@ def baseConverter(decNumber,base):
 
     return retStr
 
-
+"""
 testEqual(baseConverter(25,2),"11001")
 testEqual(baseConverter(10,2),"1010")
 testEqual(baseConverter(25,16),"19")
-
+"""
 
 def infixToPostfix(infixexpr):
     prec = {}
@@ -184,9 +185,10 @@ def infixToPostfix(infixexpr):
 
     return postfixStr
 
+"""
 print(infixToPostfix("A*B+C*D"))
 print(infixToPostfix("(A+B)*C-(D-E)*(F+G)"))
-
+"""
 
 def postfixEval(postfixExpr):
     opStack = Stack()
@@ -213,4 +215,4 @@ def doMath(op, op1, op2):
         return op1 - op2
 
 
-print(postfixEval("456*+"))
+#print(postfixEval("456*+"))
