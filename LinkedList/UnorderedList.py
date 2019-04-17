@@ -41,21 +41,32 @@ class UnorderedList:
     def remove(self, item):
 
         # Case : When head to be removed
+        print(self.head.getData())
         if(self.head.getData() == item):
             self.head = self.head.getNext()
+            return
 
         current = self.head
 
         while current.getNext() != None and current.getNext().getNext() != None:
             if current.getNext().getData() == item:
                 current.setNext(current.getNext().getNext())
+                return
             else:
-                current.setNext(current.getNext())
+                current = current.getNext()
 
         if current.getNext().getData() == item:
             current.setNext(current.getNext().getNext())
         else:
-            return 100
+            print("Item not present in the list")
+
+    def printList(self):
+        current = self.head
+
+        while current != None:
+            print(current.getData(),"")
+            current = current.getNext()
+
 
 ul = UnorderedList()
 
@@ -68,6 +79,8 @@ ul.add(15)
 
 print(ul.size())
 print(ul.search(115))
-
-ul.remove(10)
+print("Remove")
+ul.remove(100)
 print(ul.size())
+print("#######\n")
+ul.printList()

@@ -20,5 +20,5 @@ class Node:
 
 
 temp = Node(11)
-print(temp.getData())
-print(temp.getNext())
+#print(temp.getData())
+#print(temp.getNext())
